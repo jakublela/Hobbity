@@ -16,7 +16,9 @@ main{
     min-width: 500px;
     max-width: 900px;
     flex-direction: column;
-    background-color: white;
+    background-image: linear-gradient(gray, #404040, #404040, #404040);
+    border: 2px solid black;
+    border-radius: 8px;
 }
 header{
     justify-content: center;
@@ -25,7 +27,6 @@ header{
 ul{
     flex: 1 1 auto;
     flex-direction: row;
-    background-color: yellow;
     list-style-type: none;
     justify-content: center;
     flex-wrap: wrap;
@@ -33,11 +34,10 @@ ul{
 li{
     flex: 0.1 1 auto;
     justify-content: center;
-    background-color: lightgrey;
     transition: 0.2s;
 }
 li:hover{
-    background-color: white;
+    background-color: gray;
 }
 li a{
     transition: 0.2s;
@@ -46,13 +46,16 @@ li a{
     margin-bottom: 10px;
 }
 li a:hover{
-    color: grey;
+    color: lightgray;
     font-size: 19px;
     margin-top: 9px;
     margin-bottom:9px;
 }
 a:link{
     text-decoration: none;
+    color:black;
+}
+a:visited{
     color:black;
 }
 article{
@@ -62,8 +65,10 @@ section{
     margin:10px;
 }
 footer{
+    margin:10px;
     justify-content: center;
 }
+
 
 
 
