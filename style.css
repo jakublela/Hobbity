@@ -16,7 +16,7 @@ main{
     min-width: 500px;
     max-width: 900px;
     flex-direction: column;
-    background-image: linear-gradient(gray, #404040, #404040, #404040);
+    background-color: #505050;
     border: 2px solid black;
     border-radius: 8px;
 }
