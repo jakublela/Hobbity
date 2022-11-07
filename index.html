@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Hobbity</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <script type="text/javascript" src="script.js"></script>  
         <link rel="stylesheet" href="style.css">
@@ -9,56 +9,51 @@
     <body>
         <main>
             <header>
-                <h1>Strona grupy Hobbity</h1>
+                <h1>Strona Hobbity</h1>
             </header>
             
             <nav>
                 <ul>
                     <li>
-                        <a href="mainTopic.html">Tematyka Strony</a>
+                        <a href="index.html">Strona Główna</a>
                     </li>
                     <li>
-                        <a href="pipulList.html">Lista członków</a>
+                        <a href="pipulList.html">Lista Członków</a>
                     </li>
                     <li>
-                        <a href="authors.html">Twórcy strony</a>
+                        <a href="authors.html">Twórcy Strony</a>
                     </li>
                     <li>
                         <a href="https://www.google.com/search?q=kerfu%C5%9B&client=firefox-b-d&sxsrf=ALiCzsYbAcUckBMXuSMWrH8FtUc45TbeuQ:1667826998928&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjsnMXek5z7AhUH_SoKHTn5DrEQ_AUoAXoECAMQAw&biw=1858&bih=995&dpr=1" target="_blank">Kerfuś</a>
                     </li>
                 </ul>
             </nav>
-    
-            <article>
-                <h1>Poniższe zdjęcia nie reprezentują jak rzeczywiście wyglądamy</h1>
-                <img src="" alt=""> - 
-                <img src="" alt=""> - 
-                <img src="" alt=""> - 
-            </article>
-    
-            <section>
-                <form action="">
-                    <input type="text" id="name" placeholder="imie" /><br>
-                    <input type="text" id="lastname" placeholder="nazwisko" /><br>
-                    <input type="date" id="birthDate" /><br>
-                    <input type="text" id="email" placeholder="e-mail" /><br>
-                    <input type="radio" name="gender" id="m" value="m">Mężczyzna<br>
-                    <input type="radio" name="gender" id="k" value="k">Kobieta<br>
-                    <input type="radio" name="gender" id="i" value="i">Inne<br>       
-                    <input type="text" id="favColor" placeholder="Ulubiony kolor" /><br>
-    
-                    <input type="submit" value="Wyślij" /><br>
-                </form>
-            </section>
-            
-            <section>
-                <button onclick="counter()">Kliknij</button>
-                <p id="counter"></p>
-            </section>
 
-            <footer>
-                Autorzy: @Wilczur, @Arcy, @Nexi
-            </footer>
+            <div class="main">
+                <section>
+                    <form>
+                        <input type="text" id="name" placeholder="imie/imiona" /><br>
+                        <input type="text" id="lastname" placeholder="nazwisko" /><br>
+                        <input type="date" id="birthDate" /><br>
+                        <input type="text" id="email" placeholder="e-mail" /><br>
+                        <input type="radio" name="gender" id="m" value="m">Mężczyzna<br>
+                        <input type="radio" name="gender" id="k" value="k">Kobieta<br>
+                        <input type="radio" name="gender" id="i" value="i">Inne<br>
+                        <input type="text" id="favColor" placeholder="Ulubiony kolor" /><br>
+        
+                        <input type="submit" value="Wyślij" /><br>
+                    </form>
+                </section>
+                
+                <section>
+                    <button onclick="counter()">Kliknij</button>
+                    <p id="counter"></p>
+                </section>
+    
+                <footer>
+                    Autorzy: @Wilczur, @Arcy, @Nexi
+                </footer>
+            </div>
         </main>
     </body>
 </html>

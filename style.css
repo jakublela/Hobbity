@@ -1,3 +1,6 @@
+*{
+    color: azure;
+}
 body, main, header, nav, article, section, footer, ul, li{
     display: flex;
     flex: 0 1 auto;
@@ -20,12 +23,12 @@ main{
 }
 header{
     justify-content: center;
-    
+    background-color: rgb(34, 34, 34);
 }
 ul{
     flex: 1 1 auto;
     flex-direction: row;
-    background-color: yellow;
+    background-color: orange;
     list-style-type: none;
     justify-content: center;
     flex-wrap: wrap;
@@ -33,11 +36,11 @@ ul{
 li{
     flex: 0.1 1 auto;
     justify-content: center;
-    background-color: lightgrey;
+    background-color: orange;
     transition: 0.2s;
 }
 li:hover{
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 li a{
     transition: 0.2s;
@@ -46,12 +49,12 @@ li a{
     margin-bottom: 10px;
 }
 li a:hover{
-    color: grey;
+    color: rgb(0, 0, 0);
     font-size: 19px;
     margin-top: 9px;
     margin-bottom:9px;
 }
-a:link{
+a:visited, a:link{
     text-decoration: none;
     color:black;
 }
@@ -64,6 +67,27 @@ section{
 footer{
     justify-content: center;
 }
-
-
-
+.main{
+    background-color: rgb(50, 50, 50);
+    padding: 10px;
+}
+footer{
+    padding: 10px;
+}
+input, button{
+    margin: 5px;
+    background-color: rgb(110, 110, 110);
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+}
+input::placeholder{
+    color: rgb(240, 255, 255);
+    opacity: 1;
+}
+td{
+    padding: 10px;
+}
+table{
+    margin: auto;
+}

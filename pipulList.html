@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <title>Członkowie</title>
-        <script src=""></script>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script type="text/javascript" src="script.js"></script>  
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <table>
-            <tr>
-                <th>Imie</th><th>Nazwisko</th><th>Data Ur.</th><th>Ulubiony kolor</th>
-            </tr>
-            <!--Wypełnianie za pomocą JS-->
-        </table>
+        <main>
+            <header>
+                <h1>Hobbici</h1>
+            </header>
+            
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">Strona Główna</a>
+                    </li>
+                    <li>
+                        <a href="pipulList.html">Lista Członków</a>
+                    </li>
+                    <li>
+                        <a href="authors.html">Twórcy Strony</a>
+                    </li>
+                    <li>
+                        <a href="https://www.google.com/search?q=kerfu%C5%9B&client=firefox-b-d&sxsrf=ALiCzsYbAcUckBMXuSMWrH8FtUc45TbeuQ:1667826998928&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjsnMXek5z7AhUH_SoKHTn5DrEQ_AUoAXoECAMQAw&biw=1858&bih=995&dpr=1" target="_blank">Kerfuś</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="main">
+                <table>
+                    <tr>
+                        <th>Imie</th><th>Nazwisko</th><th>Data Ur.</th><th>Ulubiony kolor</th>
+                    </tr>
+                    <!--Wypełnianie za pomocą JS-->
+                </table>
+                
+                <section>
+                    <button onclick="counter()">Kliknij</button>
+                    <p id="counter"></p>
+                </section>
+    
+                <footer>
+                    Autorzy: @Wilczur, @Arcy, @Nexi
+                </footer>
+            </div>
+        </main>
     </body>
 </html>
