@@ -3,7 +3,7 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <script src=""></script>
+        <script type="text/javascript" src="script.js"></script>  
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -37,17 +37,19 @@
                 <input type="text" id="name" /><br>
                 <input type="text" id="lastname" /><br>
                 <input type="date" id="birthDate" /><br>
+                <input type="text" id="email" /><br>
                 <input type="radio" name="gender" id="m" value="m">Mężczyzna
                 <input type="radio" name="gender" id="k" value="k">Kobieta
-                <input type="radio" name="gender" id="i" value="i">Inne
+                <input type="radio" name="gender" id="i" value="i">Inne                
                 <input type="text" id="favColor" />
 
-                <input type="button" value="Wyślij" />
+                <input type="submit" value="Wyślij" />
             </form>
         </section>
 
         <footer>
-
+            <button onclick="counter()">Kliknij</button>
+            <p id="counter"></p>
         </footer>
     </body>
 </html>
