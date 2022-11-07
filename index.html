@@ -37,17 +37,17 @@
             </article>
     
             <section>
-                <form action="">
+                <form action="" id="form">
                     <input type="text" id="name" /><br>
                     <input type="text" id="lastname" /><br>
                     <input type="date" id="birthDate" /><br>
                     <input type="text" id="email" /><br>
-                    <input type="radio" name="gender" id="m" value="m">Mężczyzna<br>
-                    <input type="radio" name="gender" id="k" value="k">Kobieta<br>
-                    <input type="radio" name="gender" id="i" value="i">Inne<br>       
+                    <input type="radio" name="gender" id="m" value="male">Mężczyzna<br>
+                    <input type="radio" name="gender" id="f" value="female">Kobieta<br>
+                    <input type="radio" name="gender" id="o" value="other">Inne<br>       
                     <input type="text" id="favColor" /><br>
     
-                    <input type="submit" value="Wyślij" /><br>
+                    <input type="button" value="Wyślij" onclick="validation()"/><br>
                 </form>
             </section>
             
