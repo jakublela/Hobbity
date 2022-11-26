@@ -8,68 +8,64 @@ o    (2 pkt) wstawione zdjęcia
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-var userUrl = "robpotte";
-
-const compose = (...fns) => (userUrl) => fns.forEach((fn) => fn(userUrl));
-
-const getUserData = (userURL) => {
-    fetch("https://api.unsplash.com/users/"+userURL, {
+const getUserData = () => {
+    username = getUsername();
+    fetch("https://api.unsplash.com/users/"+username, {
         method: "GET",
         headers: authorization
     })
-    .then((response) => {
-        checkResponse(response);
-	})
-    .then((userData) => console.log(userData))
+    .then((response) => checkResponse(response))
+    .then((userData) => {
+        console.log(userData);
+        showUserData(userData);
+    })
     .catch((error) => alert(error))
 }
 
-const getUserLikes = (userURL) => {
-    fetch("https://api.unsplash.com/users/"+userURL + "/likes", {
+const getUserPhotos = () => {
+    fetch("https://api.unsplash.com/users/"+username + "/photos", {
         method: "GET",
         headers: authorization
     })
-    .then((response) => {
-        checkResponse(response);
-	})
+    .then((response) => checkResponse(response))
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
 }
 
-const getUserColletions = (userURL) => {
-    fetch("https://api.unsplash.com/users/"+userURL + "/collections", {
+const getUserLikes = () => {
+    fetch("https://api.unsplash.com/users/"+username + "/likes", {
         method: "GET",
         headers: authorization
     })
-    .then((response) => {
-        checkResponse(response);
-	})
+    .then((response) => checkResponse(response))
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
 }
 
-const getUserStats = (userURL) => {
-    fetch("https://api.unsplash.com/users/"+userURL + "/statistics", {
+const getUserColletions = () => {
+    fetch("https://api.unsplash.com/users/"+username + "/collections", {
         method: "GET",
         headers: authorization
     })
-    .then((response) => {
-        checkResponse(response);
-	})
+    .then((response) => checkResponse(response))
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
 }
 
-const getUserPhotos = (userURL) => {
-    fetch("https://api.unsplash.com/users/"+userURL + "/photos", {
+const getUserStats = () => {
+    fetch("https://api.unsplash.com/users/"+username + "/statistics", {
         method: "GET",
         headers: authorization
     })
-    .then((response) => {
-        checkResponse(response);
-	})
+    .then((response) => checkResponse(response))
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
+}
+
+const getUsername = () => {
+    username = document.getElementById("username").value;
+    username = username.toLowerCase();
+    return username = username.replaceAll(" ", "");
 }
 
 const checkResponse = (response) => {
@@ -93,7 +89,3 @@ const checkResponse = (response) => {
             throw new Error("Something went wrong on our end");
     }
 }
-
-const getUser = compose(getUserData, getUserLikes, getUserColletions, getUserStats, getUserPhotos);
-
-getUser(userUrl);
