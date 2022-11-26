@@ -64,7 +64,10 @@ const getUserStats = () => {
         headers: authorization
     })
     .then((response) => checkResponse(response))
-    .then((result) => console.log(result))
+    .then((userStats) => {
+        console.log(userStats)
+        showUserStats(userStats)
+    })
     .catch((error) => console.log(error))
 }
 

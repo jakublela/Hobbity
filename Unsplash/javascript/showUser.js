@@ -81,3 +81,40 @@ const showUserLikes = (userLikes) => {
     });
 }
 
+const showUserStats = (userStats) => {
+    let divUserContent = document.getElementById("userContent");
+    divUserContent.innerHTML = "";
+        
+    const downloadTable = document.createElement("table");
+    const downloadStats = userStats.downloads.historical.values;
+
+    const tableHead = document.createElement("th");
+    tableHead.innerHTML = "Dowloads for last 30 days";
+    tableHead.setAttribute("colspan", "2");
+    downloadTable.appendChild(tableHead);
+
+    tableHead = document.createElement("th");
+    tableHead.innerHTML = "Dowloads for last 30 days";
+    tableHead.setAttribute("colspan", "2");
+    downloadTable.appendChild(tableHead);
+
+    for (const element of downloadStats) {
+        const tableRow = document.createElement("tr");
+    
+        const cellDate = document.createElement("td");
+        cellDate.innerHTML = element.date;
+        tableRow.appendChild(cellDate);
+            
+        const cellValue = document.createElement("td");
+        cellValue.innerHTML = element.value;
+        tableRow.appendChild(cellValue);
+
+        downloadTable.appendChild(tableRow)
+    }
+
+    var tableRow = document.createElement("tr");
+    
+    
+    divUserContent.appendChild(downloadTable);
+    downloadTable.setAttribute("border", "2")
+}
