@@ -28,7 +28,10 @@ const getUserPhotos = () => {
         headers: authorization
     })
     .then((response) => checkResponse(response))
-    .then((result) => console.log(result))
+    .then((userPhotos) => {
+        console.log(userPhotos);
+        showUserPhotos(userPhotos);
+    })
     .catch((error) => console.log(error))
 }
 
@@ -38,7 +41,10 @@ const getUserLikes = () => {
         headers: authorization
     })
     .then((response) => checkResponse(response))
-    .then((result) => console.log(result))
+    .then((userLikes) => {
+        console.log(userLikes);
+        showUserLikes(userLikes);
+    })
     .catch((error) => console.log(error))
 }
 
