@@ -8,9 +8,9 @@ o    (2 pkt) wstawione zdjęcia
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-var userUrl = "robpotter";
+var userUrl = "robpotte";
 
-const compose = (...fns) => (username) => fns.forEach((fn) => fn(username))
+const compose = (...fns) => (userUrl) => fns.forEach((fn) => fn(userUrl));
 
 const getUserData = (userURL) => {
     fetch("https://api.unsplash.com/users/"+userURL, {
@@ -18,29 +18,10 @@ const getUserData = (userURL) => {
         headers: authorization
     })
     .then((response) => {
-        console.log(response.status);
-		if (!response.ok) {
-			throw new Error('Network response was not OK');
-		}
-		return response.json();
+        checkResponse(response);
 	})
-    .then((userData) => {
-        console.log(userData);
-        let divUserData = document.createElement("div");
-        let imgProfilePic = document.createElement("img");
-        let h2Username = document.createElement("h2");
-        let pUserBio = document.createElement("p");
-
-        imgProfilePic.src = userData.profile_image.large;
-        h2Username.innerHTML = userData.name;
-        pUserBio.innerHTML = userData.bio;
-
-        document.body.appendChild(divUserData);
-        divUserData.appendChild(imgProfilePic);
-        divUserData.appendChild(h2Username);
-        divUserData.appendChild(pUserBio);
-    })
-    .catch((error) => console.log(error))
+    .then((userData) => console.log(userData))
+    .catch((error) => alert(error))
 }
 
 const getUserLikes = (userURL) => {
@@ -49,11 +30,7 @@ const getUserLikes = (userURL) => {
         headers: authorization
     })
     .then((response) => {
-        console.log(response.status);
-		if (!response.ok) {
-			throw new Error('Network response was not OK');
-		}
-		return response.json();
+        checkResponse(response);
 	})
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
@@ -65,11 +42,7 @@ const getUserColletions = (userURL) => {
         headers: authorization
     })
     .then((response) => {
-        console.log(response.status);
-		if (!response.ok) {
-			throw new Error('Network response was not OK');
-		}
-		return response.json();
+        checkResponse(response);
 	})
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
@@ -81,11 +54,7 @@ const getUserStats = (userURL) => {
         headers: authorization
     })
     .then((response) => {
-        console.log(response.status);
-		if (!response.ok) {
-			throw new Error('Network response was not OK');
-		}
-		return response.json();
+        checkResponse(response);
 	})
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
@@ -97,14 +66,32 @@ const getUserPhotos = (userURL) => {
         headers: authorization
     })
     .then((response) => {
-        console.log(response.status);
-		if (!response.ok) {
-			throw new Error('Network response was not OK');
-		}
-		return response.json();
+        checkResponse(response);
 	})
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
+}
+
+const checkResponse = (response) => {
+    switch (response.status) {
+        case 200:
+            return response.json();
+    
+        case 400:
+            throw new Error("There was a problem with request");
+
+        case 401:
+            throw new Error("Invalid Access Token");
+
+        case 403:
+            throw new Error("Missing permissions to perform request");
+        
+        case 404:
+            throw new Error("User doesn't exist");
+
+        default:
+            throw new Error("Something went wrong on our end");
+    }
 }
 
 const getUser = compose(getUserData, getUserLikes, getUserColletions, getUserStats, getUserPhotos);
