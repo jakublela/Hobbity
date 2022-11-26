@@ -8,12 +8,12 @@ o    (2 pkt) wstawione zdjęcia
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-var userUrlMain = "https://api.unsplash.com/users/robpotter"
+var userUrl = "robpotter";
 
 const compose = (...fns) => (username) => fns.forEach((fn) => fn(username))
 
 const getUserData = (userURL) => {
-    fetch(userURL, {
+    fetch("https://api.unsplash.com/users/"+userURL, {
         method: "GET",
         headers: authorization
     })
@@ -24,12 +24,27 @@ const getUserData = (userURL) => {
 		}
 		return response.json();
 	})
-    .then((result) => console.log(result))
+    .then((userData) => {
+        console.log(userData);
+        let divUserData = document.createElement("div");
+        let imgProfilePic = document.createElement("img");
+        let h2Username = document.createElement("h2");
+        let pUserBio = document.createElement("p");
+
+        imgProfilePic.src = userData.profile_image.large;
+        h2Username.innerHTML = userData.name;
+        pUserBio.innerHTML = userData.bio;
+
+        document.body.appendChild(divUserData);
+        divUserData.appendChild(imgProfilePic);
+        divUserData.appendChild(h2Username);
+        divUserData.appendChild(pUserBio);
+    })
     .catch((error) => console.log(error))
 }
 
 const getUserLikes = (userURL) => {
-    fetch(userURL + "/likes", {
+    fetch("https://api.unsplash.com/users/"+userURL + "/likes", {
         method: "GET",
         headers: authorization
     })
@@ -45,7 +60,7 @@ const getUserLikes = (userURL) => {
 }
 
 const getUserColletions = (userURL) => {
-    fetch(userURL + "/collections", {
+    fetch("https://api.unsplash.com/users/"+userURL + "/collections", {
         method: "GET",
         headers: authorization
     })
@@ -61,7 +76,7 @@ const getUserColletions = (userURL) => {
 }
 
 const getUserStats = (userURL) => {
-    fetch(userURL + "/statistics", {
+    fetch("https://api.unsplash.com/users/"+userURL + "/statistics", {
         method: "GET",
         headers: authorization
     })
@@ -77,7 +92,7 @@ const getUserStats = (userURL) => {
 }
 
 const getUserPhotos = (userURL) => {
-    fetch(userURL + "/photos", {
+    fetch("https://api.unsplash.com/users/"+userURL + "/photos", {
         method: "GET",
         headers: authorization
     })
@@ -94,4 +109,4 @@ const getUserPhotos = (userURL) => {
 
 const getUser = compose(getUserData, getUserLikes, getUserColletions, getUserStats, getUserPhotos);
 
-getUser(userUrlMain);
+getUser(userUrl);
