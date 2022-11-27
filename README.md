@@ -27,10 +27,10 @@ Pod ocenę będą brane następujące elementy:
     >    (1 pkt) Aplikacja powinna mieć możliwość ustawienie jakie zdjęcia (wyszukane po słowie kluczowym) chcemy pobrać na stronę główną
     >    (1 pkt) Aplikacja dla każdego pobranego zdjęcia powinna wyświetlać po najechaniu na to zdjęcie autora tego zdjęcia
     >    (1 pkt) Aplikacja powinna wyświetlać zdjęcia wraz z możliwością sortowania pól (na przykład po dacie utworzenia zdjęcia)
-    >    (2 pkt) Aplikacja powinna mieć możliwość polubienia zdjęcia z serwisu https://unsplash.com/. Wówczas polubienie zdjęcia powinno zostać wysłane do tego serwisu
-    >    (2 pkt) Aplikacja powinna mieć możliwość odlubienia zdjęcia z serwisu https://unsplash.com/. Wówczas odlubienie zdjęcia powinno zostać wysłane do tego serwisu 
-    >    (2 pkt) Aplikacja powinna mieć możliwość tworzenia/usuwania tzw. kolekcji w serwisie https://unsplash.com/ 
-    >    (2 pkt) Aplikacja powinna mieć możliwość dodawania zdjęć do kolekcji w serwisie https://unsplash.com/ 
+    >    (2 pkt) Aplikacja powinna mieć możliwość polubienia / odlubienia (chodzi o np. zmienianie koloru łapki)
+    >    (2 pkt) Aplikacja powinna mieć możliwość wyświetlenia polubionych zdjęć danego użytkownika
+    >    (2 pkt) Aplikacja powinna mieć możliwość wyświetlenia wstawionych zdjęć danego użytkownika
+    >    (2 pkt) Aplikacja powinna mieć możliwość wyświetlenia statystyk danego użytkownika
     >    (2 pkt) Aplikacja powinna mieć możliwość wyświetlenia kolekcji danego użytkownika 
     >    (2 pkt) Aplikacja powinna posiadać możliwość sporządzania statystyk (w postaci tabeli lub wykresów) uzyskanych danych z API. Im więcej statystyk, tym większa ilość punktów.
 3.    (7 pkt) Styl aplikacji 

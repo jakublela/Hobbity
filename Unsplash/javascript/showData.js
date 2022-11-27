@@ -59,20 +59,9 @@ const showUserData = (userData) => {
     }
 }
 
-const showUserPhotos = (userPhotos) => {
-    
-
-    displayPhotos(userPhotos);
-}
-
-const showUserLikes = (userLikes) => {
-    divUserContent.innerHTML = "";
-
-    displayPhotos(userLikes);
-}
-
 const displayPhotos = (photos) => {
     divUserContent.innerHTML = "";
+
     photos.forEach(photo => {
         let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
