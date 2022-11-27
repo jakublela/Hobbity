@@ -2,12 +2,52 @@ const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
 
+/*window.addEventListener("scroll",function(){
+    let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
+    if(document.documentElement.scrollTop == limitBottom){
+    let keyword = document.getElementById("photoKeyWord").value;
+    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
+    setTimeout(1000);
+  }
+})*/
+
 window.addEventListener("scroll",function(){
     let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
     if(document.documentElement.scrollTop == limitBottom){
-    generateRandomPhotos();
+    
+    scrollLoad(photosType);
+    let keyword = document.getElementById("photoKeyWord").value;
+    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
+    setTimeout(1000);
   }
 })
+
+
+
+const scrollLoad = (type) => {
+    switch (type){
+        case "liked":
+        urlEnd2 = "profile/like"
+        break;
+
+        case "posted":
+        break;
+
+        case "collection":
+        break;
+
+        case "none":
+        break;
+
+        case "random":
+        break;
+
+        default:
+            console.error("Utop sie");
+        break;
+    }
+    generatePhotoTemplate
+}
 
 
 function generateRandomPhotos(){
@@ -38,6 +78,22 @@ function generatePhotoTemplate(urlEnd){
     })
     .catch((error) => console.log(error));  
 }
+
+const photoUrl = (photo, width = null, dpr = null, height = null) => {
+    let parameters = "";
+    if(width != null){
+        parameters += "&w=" + width;
+    }
+    if(dpr != null){
+    parameters += "&dpr=" + dpr;
+    }
+    if(height != null){
+         parameters += "&h=" + height;
+    }
+    return photo.urls.raw + parameters;
+}
+
+
 
 
 
