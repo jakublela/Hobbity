@@ -62,23 +62,78 @@ const showUserData = (userData) => {
 const showUserPhotos = (userPhotos) => {
     divUserContent.innerHTML = "";
 
-    userPhotos.forEach(element => {
-        let photo = document.createElement("img");
-        photo.class = "userPhoto";
-        photo.src = element.urls.small;
-        divUserContent.appendChild(photo);
-    });
+    displayPhotos(userPhotos);
 }
 
 const showUserLikes = (userLikes) => {
     divUserContent.innerHTML = "";
 
-    userLikes.forEach(element => {
-        let photo = document.createElement("img");
-        photo.class = "userPhoto";
-        photo.src = element.urls.small;
-        divUserContent.appendChild(photo);
+    displayPhotos(userLikes);
+}
+
+const displayPhotos = (photos) => {
+    photos.forEach(photo => {
+        let photoImg = document.createElement("img");
+        photoImg.class = "userPhoto";
+        photoImg.src = photo.urls.small;
+        divUserContent.appendChild(photoImg);
     });
+}
+
+const showUserCollections = (userColletions) => {
+    userColletions.forEach((collection) => {
+        console.log(collection.total_photos);
+        console.log(collection.title);
+        console.log(collection.description);
+        if (collection.total_photos > 0) {
+            console.log(collection.preview_photos[0].urls.regular);
+            
+        }
+        let collectionMain = document.createElement("div");
+        divUserContent.appendChild(collectionMain);
+
+        let collectionImages = document.createElement("div");
+        collectionMain.appendChild(collectionImages);
+
+        if (collection.total_photos > 0) {
+            for (const [id, photo] of collection.preview_photos.entries()) {
+                if (id > 2) break;
+                let collectionImg = document.createElement("img");
+                if (id == 0) {
+                    collectionImg.src = photo.urls.small;
+                } else {
+                    collectionImg.src = photo.urls.thumb;
+                }
+                collectionImages.appendChild(collectionImg);
+            }
+        }
+
+        let missingImages = 3 - collectionImages.childElementCount;
+        if (missingImages) {
+            for (let i = 0; i < missingImages; i++) {
+                let collectionImg = document.createElement("img");
+                collectionImg.src = "./img/emptyPhoto.png";
+                if (i == 0 && missingImages === 3) {
+                    collectionImg.style.width = "400px";
+                    collectionImg.style.height = "400px";
+                }
+                collectionImages.appendChild(collectionImg);
+            }
+        }
+
+        let collectionTitle = document.createElement("h3");
+        collectionTitle.innerHTML = collection.title;
+        collectionMain.appendChild(collectionTitle);
+
+        let collectionDescription = document.createElement("p");
+        collectionDescription.innerHTML = collection.description;
+        collectionMain.appendChild(collectionDescription);
+
+        let collectionInfo = document.createElement("span");
+        collectionInfo.innerHTML = "Autor: "+ collection.user.username +", Ilość zdjęć: "+ collection.total_photos;
+        collectionMain.appendChild(collectionInfo)
+        
+    })
 }
 
 const showUserStats = (userStats) => {
@@ -89,17 +144,17 @@ const showUserStats = (userStats) => {
 }
 
 const createStatsTable = (stats, tableName) => {
-    const statsTable = document.createElement("table");
+    let statsTable = document.createElement("table");
 
-    const tableHead = document.createElement("th");
+    let tableHead = document.createElement("th");
     tableHead.innerHTML = tableName;
     tableHead.setAttribute("colspan", "3");
     statsTable.appendChild(tableHead);
 
     for (const [id, element] of stats.historical.values.entries()) {
-        var tableRow = statsTable.insertRow();
+        let tableRow = statsTable.insertRow();
     
-        var cell = tableRow.insertCell();
+        let cell = tableRow.insertCell();
         cell.innerHTML = id+1;
 
         cell = tableRow.insertCell();

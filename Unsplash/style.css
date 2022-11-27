@@ -85,7 +85,6 @@ button{
 }
 
 img, #baseImage{
-    width: 400px;
     height: auto;
     border-radius: 30px;
 }
