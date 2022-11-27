@@ -1,17 +1,17 @@
 const imgDiv = document.getElementById("divImg");
 const img = document.getElementsByName("img");
 const overlay = document.createElement("div");
-const authorization = new Headers();
-authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
+//const authorization = new Headers();
+//authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-fetch("https://api.unsplash.com/photos/random", {
+/*fetch("https://api.unsplash.com/photos/random", {
     method: "GET",
     headers: authorization
 })
     .then((Response) => Response.json())
     .then((json) => {
         
-    })
+    })*/
 
 
 

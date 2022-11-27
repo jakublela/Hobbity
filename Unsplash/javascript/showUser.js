@@ -1,3 +1,6 @@
+const mainDiv = document.getElementById("main");
+const uBio = document.getElementById("uBio")
+
 const showUserData = (userData) => {
     if(document.getElementById("divUserData")) {
         let imgProfilePic = document.getElementById("imgProfilePic");
@@ -13,16 +16,16 @@ const showUserData = (userData) => {
         divUserContent.innerHTML = "";
     } else {
         let divUserData = document.createElement("div");
-        divUserData.id = "divUserData";
-        document.body.appendChild(divUserData);
+        divUserData.className = "uData";
+        main.appendChild(divUserData);
 
         let imgProfilePic = document.createElement("img");
-        imgProfilePic.id = "imgProfilePic";
+        imgProfilePic.className = "imgPfp";
         imgProfilePic.src = userData.profile_image.large;
         divUserData.appendChild(imgProfilePic);
 
         let h2Username = document.createElement("h2");
-        h2Username.id = "h2Username"
+        h2Username.className = "user"
         h2Username.innerHTML = userData.name;
         divUserData.appendChild(h2Username);
 
@@ -53,7 +56,9 @@ const showUserData = (userData) => {
 
         let divUserContent = document.createElement("div");
         divUserContent.id = "userContent";
-        document.body.appendChild(divUserContent);
+        main.appendChild(divUserContent);
+
+        uBio.appendChild(h2Username).appendChild(pUserBio);
     }
 }
 

@@ -9,10 +9,15 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="">
-            <input type="text" id="username" value="rob potter">
-            <input type="button" value="Show user" onclick="getUserData()">
-        </form>
+        <header>
+            <div class="search-bar">
+                <button onclick="getUserData()"><span class="material-symbols-outlined">search</span></button>
+                <input type="text" id="username" placeholder="Szukaj...." >
+            </div>
+        </header>
+        <main id="main">
+            <div id="uBio" class="uBio"></div>
+        </main>
         <!--<img src="img/indeks.png" alt="" onmouseover="mouseOver()" onmouseleave="mouseOut()">-->
     </body>
 </html>
