@@ -30,7 +30,7 @@ button{
     border: none;
 }
 
-#username{
+#searchbar{
     border: none;
     background-color: #181818;
     height: 50px;
@@ -40,7 +40,7 @@ button{
     font-size: 28px;
     margin-left: 10px;
 }
-#username::placeholder{
+#searchbar::placeholder{
     color: #7a7a7a;
     font-size: 24px;
 }

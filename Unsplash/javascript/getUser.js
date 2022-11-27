@@ -8,8 +8,24 @@ o    (2 pkt) wstawione zdjęcia
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-const getUserData = () => {
-    username = getUsername();
+const searchbar = document.getElementById("searchbar");
+var username;
+
+searchbar.addEventListener("keydown", function (key) {
+    if (key.code === "Enter") {
+        username = getUsername()
+        getUserData(username)
+    }
+})
+
+const getUsername = () => {
+    let username = searchbar.value;
+    username = username.toLowerCase();
+    username = username.replaceAll(" ", "");
+    return username;
+}
+
+const getUserData = (username) => {
     fetch("https://api.unsplash.com/users/"+username, {
         method: "GET",
         headers: authorization
@@ -69,12 +85,6 @@ const getUserStats = () => {
         showUserStats(userStats)
     })
     .catch((error) => console.log(error))
-}
-
-const getUsername = () => {
-    username = document.getElementById("username").value;
-    username = username.toLowerCase();
-    return username = username.replaceAll(" ", "");
 }
 
 const checkResponse = (response) => {
