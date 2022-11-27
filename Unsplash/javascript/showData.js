@@ -60,7 +60,7 @@ const showUserData = (userData) => {
 }
 
 const showUserPhotos = (userPhotos) => {
-    divUserContent.innerHTML = "";
+    
 
     displayPhotos(userPhotos);
 }
@@ -72,24 +72,22 @@ const showUserLikes = (userLikes) => {
 }
 
 const displayPhotos = (photos) => {
+    divUserContent.innerHTML = "";
     photos.forEach(photo => {
+        let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
         photoImg.class = "userPhoto";
         photoImg.src = photo.urls.small;
-        divUserContent.appendChild(photoImg);
+        photoImgDiv.appendChild(photoImg);
+        divUserContent.appendChild(photoImgDiv);
     });
 }
 
 const showUserCollections = (userColletions) => {
+    divUserContent.innerHTML = "";
     userColletions.forEach((collection) => {
-        console.log(collection.total_photos);
-        console.log(collection.title);
-        console.log(collection.description);
-        if (collection.total_photos > 0) {
-            console.log(collection.preview_photos[0].urls.regular);
-            
-        }
         let collectionMain = document.createElement("div");
+        collectionMain.onclick = function() {openCollection(collection.links.photos)}
         divUserContent.appendChild(collectionMain);
 
         let collectionImages = document.createElement("div");

@@ -43,7 +43,7 @@ const getUserPhotos = () => {
     .then((response) => checkResponse(response))
     .then((userPhotos) => {
         console.log(userPhotos);
-        showUserPhotos(userPhotos);
+        displayPhotos(userPhotos);
     })
     .catch((error) => console.log(error))
 }
@@ -56,7 +56,7 @@ const getUserLikes = () => {
     .then((response) => checkResponse(response))
     .then((userLikes) => {
         console.log(userLikes);
-        showUserLikes(userLikes);
+        displayPhotos(userLikes);
     })
     .catch((error) => console.log(error))
 }
@@ -85,6 +85,19 @@ const getUserStats = () => {
         showUserStats(userStats)
     })
     .catch((error) => console.log(error))
+}
+
+const openCollection = (collectionPhotosLink) => {
+    console.log(collectionPhotosLink);
+    fetch(collectionPhotosLink, {
+        method: "GET",
+        headers: authorization
+    })
+    .then((response) => checkResponse(response))
+    .then((collectionPhotos) => {
+        console.log(collectionPhotos);
+        displayPhotos(collectionPhotos);
+    })
 }
 
 const checkResponse = (response) => {
