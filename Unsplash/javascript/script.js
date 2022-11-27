@@ -1,9 +1,6 @@
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-
-
-
 function generateRandomPhotos(){
     generatePhotoTemplate("photos/random", document.getElementById("photoAmount").value);
 }
