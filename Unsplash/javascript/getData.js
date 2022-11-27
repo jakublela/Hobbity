@@ -6,37 +6,43 @@ const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
 const searchbar = document.getElementById("searchbar");
-var username;
-
 searchbar.addEventListener("keydown", function (key) {
-    if (key.code === "Enter") {
-        username = getUsername();
-        getUserData(username);
+    if (key.code !== "Enter") return;
+    
+    let search = searchbar.value;
+
+    if (search.startsWith("u/")) {
+        let username = search.slice(2).toLowerCase().replaceAll(" ", "");
+        getUserData("https://api.unsplash.com/users/" + username);
+    } else {
+        
     }
+    
 })
 
-const getUsername = () => {
-    let username = searchbar.value;
-    username = username.toLowerCase();
-    username = username.replaceAll(" ", "");
-    return username;
+const getSearchbarValue = () => {
+    let searchbarValue = searchbar.value;
+    searchbarValue = searchbarValue.toLowerCase();
+    searchbarValue = searchbarValue.replaceAll(" ", "");
+    console.log(searchbarValue);
+    return searchBarValue;
 }
 
-const getUserData = (username) => {
-    fetch("https://api.unsplash.com/users/"+username, {
+const getUserData = (userUrl) => {
+    fetch(userUrl, {
         method: "GET",
         headers: authorization
     })
     .then((response) => checkResponse(response))
     .then((userData) => {
         console.log(userData);
-        showUserData(userData);
+        showUserData(userData, userUrl);
     })
     .catch((error) => alert(error))
 }
 
-const getUserPhotos = () => {
-    fetch("https://api.unsplash.com/users/"+username + "/photos", {
+const getUserPhotos = (userUrl) => {
+    fetch(userUrl + "/photos", {
         method: "GET",
         headers: authorization
     })
@@ -48,8 +54,8 @@ const getUserPhotos = () => {
     .catch((error) => console.log(error))
 }
 
-const getUserLikes = () => {
-    fetch("https://api.unsplash.com/users/"+username + "/likes", {
+const getUserLikes = (userUrl) => {
+    fetch(userUrl + "/likes", {
         method: "GET",
         headers: authorization
     })
@@ -61,8 +67,8 @@ const getUserLikes = () => {
     .catch((error) => console.log(error))
 }
 
-const getUserColletions = () => {
-    fetch("https://api.unsplash.com/users/"+username + "/collections", {
+const getUserColletions = (userUrl) => {
+    fetch(userUrl + "/collections", {
         method: "GET",
         headers: authorization
     })
@@ -74,8 +80,8 @@ const getUserColletions = () => {
     .catch((error) => console.log(error))
 }
 
-const getUserStats = () => {
-    fetch("https://api.unsplash.com/users/"+username + "/statistics", {
+const getUserStats = (userUrl) => {
+    fetch(userUrl + "/statistics", {
         method: "GET",
         headers: authorization
     })

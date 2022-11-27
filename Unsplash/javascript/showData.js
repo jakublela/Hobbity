@@ -2,7 +2,7 @@ const mainDiv = document.getElementById("main");
 const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
 
-const showUserData = (userData) => {
+const showUserData = (userData, userUrl) => {
     if(document.getElementById("uBio")) {
         let imgProfilePic = document.getElementById("imgPfp");
         imgProfilePic.src = userData.profile_image.large;
@@ -39,28 +39,30 @@ const showUserData = (userData) => {
 
         let btnShowUserPhotos = document.createElement("button");
         btnShowUserPhotos.innerHTML = "Show user's photos";
-        btnShowUserPhotos.onclick = function() {getUserPhotos(username)};
+        btnShowUserPhotos.onclick = function() {getUserPhotos(userUrl)};
         uData.appendChild(btnShowUserPhotos); 
 
         let btnShowUserLikes = document.createElement("button");
         btnShowUserLikes.innerHTML = "Show user's likes";
-        btnShowUserLikes.onclick = function() {getUserLikes(username)};
+        btnShowUserLikes.onclick = function() {getUserLikes(userUrl)};
         uData.appendChild(btnShowUserLikes);
 
         let btnShowUserColletions = document.createElement("button");
         btnShowUserColletions.innerHTML = "Show user's collections";
-        btnShowUserColletions.onclick = function() {getUserColletions(username)};
+        btnShowUserColletions.onclick = function() {getUserColletions(userUrl)};
         uData.appendChild(btnShowUserColletions);
 
         let btnShowUserStats = document.createElement("button");
         btnShowUserStats.innerHTML = "Show user's stats";
-        btnShowUserStats.onclick = function() {getUserStats(username)};
+        btnShowUserStats.onclick = function() {getUserStats(userUrl)};
         uData.appendChild(btnShowUserStats);
-    }
+
+        divUserContent.innerHTML = "";
+    }   
 }
 
-const displayPhotos = (photos) => {
-    divUserContent.innerHTML = "";
+const displayPhotos = (photos, clearDiv = true) => {
+    if (clearDiv) divUserContent.innerHTML = "";
 
     photos.forEach(photo => {
         let photoImgDiv = document.createElement("div");
