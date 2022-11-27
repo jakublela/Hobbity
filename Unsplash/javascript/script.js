@@ -1,21 +1,21 @@
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-
-/*window.addEventListener("scroll",function(){
+window.addEventListener("scroll",function(){
     let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
     if(document.documentElement.scrollTop == limitBottom){
     let keyword = document.getElementById("photoKeyWord").value;
     generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
     setTimeout(1000);
   }
-})*/
+})
+generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8 }));
 
-window.addEventListener("scroll",function(){
+
+/*window.addEventListener("scroll",function(){
     let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
     if(document.documentElement.scrollTop == limitBottom){
-    
-    scrollLoad(photosType);
+    scrollLoad(urlPhoto);
     let keyword = document.getElementById("photoKeyWord").value;
     generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
     setTimeout(1000);
@@ -24,30 +24,10 @@ window.addEventListener("scroll",function(){
 
 
 
-const scrollLoad = (type) => {
-    switch (type){
-        case "liked":
-        urlEnd2 = "profile/like"
-        break;
-
-        case "posted":
-        break;
-
-        case "collection":
-        break;
-
-        case "none":
-        break;
-
-        case "random":
-        break;
-
-        default:
-            console.error("Utop sie");
-        break;
-    }
-    generatePhotoTemplate
-}
+const scrollLoad = (urlPhoto) => {
+    if()
+    generatePhotoTemplate(urlPhoto + new URLSearchParams({ page: number, per_page: 8}))
+}*/
 
 
 function generateRandomPhotos(){
@@ -65,16 +45,17 @@ function generatePhotoTemplate(urlEnd){
     .then((response) => response.json())
     .then((photos) => {
         console.log(photos);
-        photos.forEach(photo => {
+        displayPhotos(photos, false);
+        /*photos.forEach(photo => {
             let newDiv = document.createElement("div");
             let newPhoto = document.createElement("img");
             newPhoto.id = "photo";
-            newPhoto.src = photo.urls.raw + "&w=150&dpr=2";
+            newPhoto.src = photoUrl(photo, 250, 2);
             let currentDiv = document.getElementById("ender");
             newDiv.id = "photo_template";
             newDiv.appendChild(newPhoto);
             document.body.insertBefore(newDiv, currentDiv);
-        });
+        });*/
     })
     .catch((error) => console.log(error));  
 }
