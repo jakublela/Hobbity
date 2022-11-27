@@ -2,11 +2,18 @@ const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
 
+window.addEventListener("scroll",function(){
+    let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
+    if(document.documentElement.scrollTop == limitBottom){
+    generateRandomPhotos();
+  }
+})
 
 
 function generateRandomPhotos(){
     let amount = document.getElementById("photoAmount").value;
-    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: amount }));
+    let keyword = document.getElementById("photoKeyWord").value;
+    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: amount, query: keyword}));
 }
 
 function generatePhotoTemplate(urlEnd){
@@ -31,6 +38,8 @@ function generatePhotoTemplate(urlEnd){
     })
     .catch((error) => console.log(error));  
 }
+
+
 
 /*fetch("https://api.unsplash.com/photos/random", {
         method: "GET",
