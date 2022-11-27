@@ -2,17 +2,15 @@ const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
 function generateRandomPhotos(){
-    generatePhotoTemplate("photos/random", document.getElementById("photoAmount").value);
+    let amount = document.getElementById("photoAmount").value;
+    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: amount }));
 }
 
-function generatePhotoTemplate(urlEnd, amount){
-console.log(amount);
+function generatePhotoTemplate(urlEnd){
+
     fetch("https://api.unsplash.com/" + urlEnd,{
         method: "GET",
         headers: authorization,
-        params: {
-            count: amount
-        }
     })
     .then((response) => response.json())
     .then((photos) => {

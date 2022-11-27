@@ -1,15 +1,28 @@
 /*
 (8 pkt) Aplikacja powinna mieć możliwość wyświetlić danego użytkownika:
-o    (2 pkt) polubione zdjęcia
 o    (2 pkt) kolekcje
-o    (2 pkt) statystyki
-o    (2 pkt) wstawione zdjęcia
 */
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-const getUserData = () => {
-    username = getUsername();
+const searchbar = document.getElementById("searchbar");
+var username;
+
+searchbar.addEventListener("keydown", function (key) {
+    if (key.code === "Enter") {
+        username = getUsername();
+        getUserData(username);
+    }
+})
+
+const getUsername = () => {
+    let username = searchbar.value;
+    username = username.toLowerCase();
+    username = username.replaceAll(" ", "");
+    return username;
+}
+
+const getUserData = (username) => {
     fetch("https://api.unsplash.com/users/"+username, {
         method: "GET",
         headers: authorization
@@ -54,7 +67,10 @@ const getUserColletions = () => {
         headers: authorization
     })
     .then((response) => checkResponse(response))
-    .then((result) => console.log(result))
+    .then((userColletions) => {
+        console.log(userColletions);
+        showUserCollections(userColletions);
+    })
     .catch((error) => console.log(error))
 }
 
@@ -69,12 +85,6 @@ const getUserStats = () => {
         showUserStats(userStats)
     })
     .catch((error) => console.log(error))
-}
-
-const getUsername = () => {
-    username = document.getElementById("username").value;
-    username = username.toLowerCase();
-    return username = username.replaceAll(" ", "");
 }
 
 const checkResponse = (response) => {
