@@ -1,3 +1,4 @@
+let select = document.getElementById("sortOpt").value;
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 

@@ -13,10 +13,15 @@ const overlay = document.createElement("div");
         
     })*/
 
-
+    let h2Username = document.createElement("h2");
+    h2Username.id = "user";
+    h2Username.className = "user";
+    h2Username.innerHTML = userData.name;
+    divUserBio.appendChild(h2Username);
 
 const mouseOver = () => {
     overlay.setAttribute("id", "overlay");
+    overlay.innerHTML = ""
     overlay.appendChild(document.createTextNode("Hello there!"));
     //overlay.style.cssText = "width: " + imgWidth + "; height: " + imgHeight + ";";
 
