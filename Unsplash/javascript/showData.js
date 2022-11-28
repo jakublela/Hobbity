@@ -31,22 +31,26 @@ const showUserData = (userData, userUrl) => {
         divUserBio.appendChild(pUserBio);
 
         let btnShowUserPhotos = document.createElement("button");
-        btnShowUserPhotos.innerHTML = "Show user's photos";
+        btnShowUserPhotos.id = "userInfoBtn";
+        btnShowUserPhotos.innerHTML = "photos";
         btnShowUserPhotos.onclick = function() {getUserPhotos(userUrl)};
         uData.appendChild(btnShowUserPhotos); 
 
         let btnShowUserLikes = document.createElement("button");
-        btnShowUserLikes.innerHTML = "Show user's likes";
+        btnShowUserLikes.id = "userInfoBtn";
+        btnShowUserLikes.innerHTML = "liked";
         btnShowUserLikes.onclick = function() {getUserLikes(userUrl)};
         uData.appendChild(btnShowUserLikes);
 
         let btnShowUserColletions = document.createElement("button");
-        btnShowUserColletions.innerHTML = "Show user's collections";
+        btnShowUserColletions.id = "userInfoBtn";
+        btnShowUserColletions.innerHTML = "collections";
         btnShowUserColletions.onclick = function() {getUserColletions(userUrl)};
         uData.appendChild(btnShowUserColletions);
 
         let btnShowUserStats = document.createElement("button");
-        btnShowUserStats.innerHTML = "Show user's stats";
+        btnShowUserStats.id = "userInfoBtn";
+        btnShowUserStats.innerHTML = "statistics";
         btnShowUserStats.onclick = function() {getUserStats(userUrl)};
         uData.appendChild(btnShowUserStats);
 
@@ -90,8 +94,10 @@ const displayPhotos = (photos, clearDiv = true) => {
 
 //Przycisk do ładowania kolejnej strony zdjęć
 const loadMorePhotos = (link, type, pageNum) => {
+    deleteLoadMore();
     let btnLoadMore = document.createElement("button");
-    btnLoadMore.innerHTML = "Załaduj więcej zdjęć";
+    btnLoadMore.innerHTML = "load more...";
+    btnLoadMore.id = "loadMoreBtn";
     btnLoadMore.onclick = function () {
         switch (type) {
             case 1:
@@ -113,13 +119,17 @@ const loadMorePhotos = (link, type, pageNum) => {
 
 //Wyświetlanie kolekcju
 const showUserCollections = (userColletions) => {
+    deleteLoadMore();
     clearColumns();
     userColletions.forEach((collection) => {
+        let photoColumn = document.getElementById("column" + columnNumber);
         let collectionMain = document.createElement("div");
+        collectionMain.id = "colMain";
         collectionMain.onclick = function() {openCollection(collection.links.photos)}
-        divUserContent.appendChild(collectionMain);
+        photoColumn.appendChild(collectionMain);
 
         let collectionImages = document.createElement("div");
+        collectionImages.id = "colImages";
         collectionMain.appendChild(collectionImages);
 
         if (collection.total_photos > 0) {
@@ -131,6 +141,7 @@ const showUserCollections = (userColletions) => {
                 } else {
                     collectionImg.src = photoUrl(photo, 100);
                 }
+                collectionImg.id = "colImg";
                 collectionImages.appendChild(collectionImg);
             }
         }
@@ -141,21 +152,28 @@ const showUserCollections = (userColletions) => {
                 let collectionImg = document.createElement("img");
                 collectionImg.src = "./img/emptyPhoto.png";
                 if (i == 0 && missingImages === 3) collectionImg.style.width = "200px";
+                collectionImg.id = "colImg";
                 collectionImages.appendChild(collectionImg);
             }
         }
 
         let collectionTitle = document.createElement("h3");
+        collectionTitle.id = "colTitle";
         collectionTitle.innerHTML = collection.title;
         collectionMain.appendChild(collectionTitle);
 
         let collectionDescription = document.createElement("p");
+        collectionDescription.id = "colDescription";
         collectionDescription.innerHTML = collection.description;
         collectionMain.appendChild(collectionDescription);
 
         let collectionInfo = document.createElement("span");
-        collectionInfo.innerHTML = "Autor: "+ collection.user.username +", Ilość zdjęć: "+ collection.total_photos;
+        collectionInfo.id = "colInfo";
+        collectionInfo.innerHTML = "made by <i>"+ collection.user.username +"</i>,<br>"+ collection.total_photos + " photos";
         collectionMain.appendChild(collectionInfo)
+
+        columnNumber++;
+        if(columnNumber > 5) columnNumber = 1;
         
     })
 }
@@ -163,13 +181,17 @@ const showUserCollections = (userColletions) => {
 //Wyświetlanie statystyk użytkownika
 const showUserStats = (userStats) => {
     clearColumns();
-    
+    deleteLoadMore();
     createStatsTable(userStats.downloads, "Pobrania");
     createStatsTable(userStats.views, "Wyświetlenia");
 }
 
 //Stworzenie tabeli na statystyki
 const createStatsTable = (stats, tableName) => {
+    
+    let photoColumn = document.getElementById("column" + columnNumber);
+
+
     let statsTable = document.createElement("table");
 
     let tableHead = document.createElement("th");
@@ -217,6 +239,9 @@ const createStatsTable = (stats, tableName) => {
     cell = tableRow.insertCell();
     cell.innerHTML = stats.total;
     
-    divUserContent.appendChild(statsTable);
+    photoColumn.appendChild(statsTable);
     statsTable.setAttribute("border", "2");
+
+    columnNumber++;
+    if(columnNumber > 5) columnNumber = 1;
 }

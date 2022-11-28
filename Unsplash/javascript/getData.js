@@ -54,7 +54,7 @@ const getUserLikes = (userUrl, pageNum = 1) => {
 
 //Pobranie kolekcji użytkownika
 const getUserColletions = (userUrl) => {
-    fetch(userUrl + "/collections", {
+    fetch(userUrl + "/collections?" + new URLSearchParams({ per_page: 30}), {
         method: "GET",
         headers: authorization
     })

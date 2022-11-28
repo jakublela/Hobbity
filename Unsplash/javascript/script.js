@@ -19,6 +19,7 @@ function listenerCopy(fn){
 }
 
 function randomGenerate(){
+    deleteLoadMore();
     deleteUData();
     clearColumns();
     generateRandomPhotos();
@@ -121,7 +122,13 @@ function createUData(){
 
 function deleteUData(){
     if(document.getElementById("uData") != null){
-    document.getElementById("uData").remove();
+        document.getElementById("uData").remove();
+    }
+}
+
+function deleteLoadMore(){
+    if(document.getElementById("loadMoreBtn") != null){
+        document.getElementById("loadMoreBtn").remove();
     }
 }
 
