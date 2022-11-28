@@ -73,14 +73,16 @@ const displayPhotos = (photos, clearDiv = true) => {
         let photoColumn = document.getElementById("column" + columnNumber);
         photoImg.class = "userPhoto";
         photoImg.src = photoUrl(photo, 200);
+
         photoImgDiv.appendChild(photoImg);
+        
+
         photoColumn.appendChild(photoImgDiv);
         //divUserContent.appendChild(photoImgDiv);
         photoImgDiv.className = "photoDiv";
         photoImg.className = "photoItself";
         columnNumber++;
         if(columnNumber > 5) columnNumber = 1;
-        
     });
 }
 
@@ -107,7 +109,7 @@ const loadMorePhotos = (link, type, pageNum) => {
     divUserContent.appendChild(btnLoadMore) ;
 }
 
-//Wyświetlanie kolekcju
+//Wyświetlanie kolekcji
 const showUserCollections = (userColletions) => {
     clearColumns();
     userColletions.forEach((collection) => {
