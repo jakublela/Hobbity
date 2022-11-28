@@ -2,7 +2,7 @@ const mainDiv = document.getElementById("main");
 const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
 
-const showUserData = (userData) => {
+const showUserData = (userData, userUrl) => {
     if(document.getElementById("uBio")) {
         let imgProfilePic = document.getElementById("imgPfp");
         imgProfilePic.src = userData.profile_image.large;
@@ -39,37 +39,61 @@ const showUserData = (userData) => {
 
         let btnShowUserPhotos = document.createElement("button");
         btnShowUserPhotos.innerHTML = "Show user's photos";
-        btnShowUserPhotos.onclick = function() {getUserPhotos(username)};
+        btnShowUserPhotos.onclick = function() {getUserPhotos(userUrl)};
         uData.appendChild(btnShowUserPhotos); 
 
         let btnShowUserLikes = document.createElement("button");
         btnShowUserLikes.innerHTML = "Show user's likes";
-        btnShowUserLikes.onclick = function() {getUserLikes(username)};
+        btnShowUserLikes.onclick = function() {getUserLikes(userUrl)};
         uData.appendChild(btnShowUserLikes);
 
         let btnShowUserColletions = document.createElement("button");
         btnShowUserColletions.innerHTML = "Show user's collections";
-        btnShowUserColletions.onclick = function() {getUserColletions(username)};
+        btnShowUserColletions.onclick = function() {getUserColletions(userUrl)};
         uData.appendChild(btnShowUserColletions);
 
         let btnShowUserStats = document.createElement("button");
         btnShowUserStats.innerHTML = "Show user's stats";
-        btnShowUserStats.onclick = function() {getUserStats(username)};
+        btnShowUserStats.onclick = function() {getUserStats(userUrl)};
         uData.appendChild(btnShowUserStats);
-    }
+
+        divUserContent.innerHTML = "";
+    }   
 }
 
-const displayPhotos = (photos) => {
-    divUserContent.innerHTML = "";
+const displayPhotos = (photos, clearDiv = true) => {
+    if (clearDiv) divUserContent.innerHTML = "";
 
     photos.forEach(photo => {
         let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
         photoImg.class = "userPhoto";
-        photoImg.src = photo.urls.small;
+        photoImg.src = photoUrl(photo, 200);
         photoImgDiv.appendChild(photoImg);
         divUserContent.appendChild(photoImgDiv);
     });
+}
+
+const loadMorePhotos = (link, type, pageNum) => {
+    let btnLoadMore = document.createElement("button");
+    btnLoadMore.innerHTML = "Załaduj więcej zdjęć";
+    btnLoadMore.onclick = function () {
+        switch (type) {
+            case 1:
+                getUserPhotos(link, ++pageNum);
+                break;
+
+            case 2:
+                getUserLikes(link, ++pageNum)
+                break;
+
+            case 3:
+                openCollection(link, ++pageNum)
+                break;
+        }
+        btnLoadMore.remove();
+    }
+    divUserContent.appendChild(btnLoadMore) ;
 }
 
 const showUserCollections = (userColletions) => {
@@ -87,9 +111,9 @@ const showUserCollections = (userColletions) => {
                 if (id > 2) break;
                 let collectionImg = document.createElement("img");
                 if (id == 0) {
-                    collectionImg.src = photo.urls.small;
+                    collectionImg.src = photoUrl(photo, 200);
                 } else {
-                    collectionImg.src = photo.urls.thumb;
+                    collectionImg.src = photoUrl(photo, 100);
                 }
                 collectionImages.appendChild(collectionImg);
             }
@@ -100,10 +124,7 @@ const showUserCollections = (userColletions) => {
             for (let i = 0; i < missingImages; i++) {
                 let collectionImg = document.createElement("img");
                 collectionImg.src = "./img/emptyPhoto.png";
-                if (i == 0 && missingImages === 3) {
-                    collectionImg.style.width = "400px";
-                    collectionImg.style.height = "400px";
-                }
+                if (i == 0 && missingImages === 3) collectionImg.style.width = "200px";
                 collectionImages.appendChild(collectionImg);
             }
         }

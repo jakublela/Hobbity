@@ -1,6 +1,3 @@
-const authorization = new Headers();
-authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
-
 window.addEventListener("scroll",function(){
     let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
     if(document.documentElement.scrollTop == limitBottom){

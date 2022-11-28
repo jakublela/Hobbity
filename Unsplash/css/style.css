@@ -21,7 +21,7 @@ header{
 .search-bar{
     background-color: #181818;
     height: 50px;
-    width: 60%;
+    width: 40%;
     border-radius: 35px;
     padding: 5px 10px 5px 10px;
 }
@@ -31,7 +31,7 @@ button{
     border: none;
 }
 
-#searchbar{
+.searchbar{
     border: none;
     background-color: #181818;
     height: 50px;
@@ -41,7 +41,7 @@ button{
     font-size: 28px;
     margin-left: 10px;
 }
-#searchbar::placeholder{
+.searchbar::placeholder{
     color: #7a7a7a;
     font-size: 24px;
 }
