@@ -5,19 +5,13 @@ o    (2 pkt) kolekcje
 const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
-const searchbar = document.getElementById("searchbar");
+const searchbar = document.getElementById("searchUser");
 searchbar.addEventListener("keydown", function (key) {
     if (key.code !== "Enter") return;
     
     let search = searchbar.value;
-
-    if (search.startsWith("u/")) {
-        let username = search.slice(2).toLowerCase().replaceAll(" ", "");
-        getUserData("https://api.unsplash.com/users/" + username);
-    } else {
-
-    }
-    
+    let username = search.toLowerCase().replaceAll(" ", "");
+    getUserData("https://api.unsplash.com/users/" + username);
 })
 
 const getSearchbarValue = () => {
@@ -25,7 +19,7 @@ const getSearchbarValue = () => {
     searchbarValue = searchbarValue.toLowerCase();
     searchbarValue = searchbarValue.replaceAll(" ", "");
     console.log(searchbarValue);
-    return searchBarValue;
+    return searchbarValue;
 }
 
 const getUserData = (userUrl) => {
