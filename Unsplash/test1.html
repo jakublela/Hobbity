@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Unsplash</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src="javascript/script.js"></script>
+        <script src="javascript/showData.js" defer></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <form>
+            amount of photos: <input type="number" id="photoAmount"><!-- Aplikacja powinna mieć możliwość ustawienia ile zdjęć losowych chcemy pobrać na stronę główną -->
+            <br>
+            photo keyword: <input type="text" id="photoKeyWord"><!-- Aplikacja powinna mieć możliwość ustawienie jakie zdjęcia (wyszukane po słowie kluczowym) chcemy pobrać na stronę główną -->
+            <br>
+            generate random photos: <input type="button" value="Random Photos" onclick="generateRandomPhotos()"/>
+        </form>
+        <main id="main">
+            <div id="uData" class="uData"></div>
+            <div id="userContent"></div>
+        </main>
+    </body>
+</html>
