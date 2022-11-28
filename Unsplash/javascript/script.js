@@ -47,7 +47,7 @@ function generatePhotoTemplate(urlEnd){
             let newDiv = document.createElement("div");
             let newPhoto = document.createElement("img");
             newPhoto.id = "photo";
-            newPhoto.src = photoUrl(photo, 250, 2);
+            newPhoto.src = photoUrl(photo, 150);
             let currentDiv = document.getElementById("ender");
             newDiv.id = "photo_template";
             newDiv.appendChild(newPhoto);
