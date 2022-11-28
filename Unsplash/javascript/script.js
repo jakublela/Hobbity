@@ -28,8 +28,8 @@ const scrollLoad = (urlPhoto) => {
 
 
 function generateRandomPhotos(){
-    let amount = document.getElementById("photoAmount").value;
-    let keyword = document.getElementById("photoKeyWord").value;
+    let amount = document.getElementById("searchRandomNumber").value;
+    let keyword = document.getElementById("searchRandomTag").value;
     generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: amount, query: keyword}));
 }
 
