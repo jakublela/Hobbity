@@ -44,9 +44,13 @@
 
 }
 
+.overlayTop{
+  width: 100%;
+  display: flex;
+}
 .overlayBottom{
-    position: absolute;
-    bottom: 0px;
+  width: 100%;
+  display: flex;
 }
 </style>
 </head>
@@ -58,7 +62,9 @@
 <div class="container">
   <img src="img/indeks.png" alt="Avatar" class="image">
   <div class="overlay">
-    <input type="button" value="Polub" class="likeBtn">
+    <header class="overlayTop">
+      <input type="button" value="Polub" class="likeBtn">
+    </header>
     <footer class="overlayBottom">
         <span class="author">[Author]</span>
         <button class="imgOpt"><span class="material-symbols-outlined2" style="transform: translateX(-1px);">share</span></button>
