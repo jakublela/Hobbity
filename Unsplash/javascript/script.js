@@ -1,8 +1,11 @@
+generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 10}));
+
 
 window.addEventListener("scroll",function(){
-    listenerCopy(generatePhotoTemplate)
+    if(isRandom) listenerCopy(generatePhotoTemplate);
   }
 )
+
 
 function listenerCopy(fn){
     clearTimeout(fn.td);
@@ -10,30 +13,38 @@ function listenerCopy(fn){
         let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
         //console.log("limitBottom=" + limitBottom + " offsetHeight=" + document.documentElement.offsetHeight + " innerHeight=" + window.innerHeight + " scrollTop=" + document.documentElement.scrollTop);
         if(document.documentElement.scrollTop >= limitBottom){
-            console.log("powieś sie2");
             let keyword = document.getElementById("searchRandomTag").value;
             fn("photos/random?" + new URLSearchParams({ count: 10, query: keyword}));
     }}, 1000)
 }
 
 
+
 const searchRandomPhoto = document.getElementById("searchRandomTag");
 searchRandomPhoto.addEventListener("keydown", function(key) {
     if(key.code != "Enter") return;
-    divUserContent.innerHTML = "";
+    clearColumns();
     uData.innerHTML = "";
     generateRandomPhotos();
+    isRandom = true;
 })
 
 const searchRandomNumber = document.getElementById("searchRandomNumber");
 searchRandomNumber.addEventListener("keydown", function(key) {
     if(key.code != "Enter") return;
-    divUserContent.innerHTML = "";
+    clearColumns();
     uData.innerHTML = "";
     generateRandomPhotos();
+    isRandom = true;
 })
 
-
+function clearColumns(){
+    for (let i = 1; i <= 5; i++){
+        let photoColumn = document.getElementById("column" + i);
+        photoColumn.innerHTML = "";
+        columnNumber = 1;
+    }
+}
 
 
 /*window.addEventListener("scroll",function(){

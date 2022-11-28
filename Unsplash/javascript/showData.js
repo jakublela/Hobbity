@@ -2,6 +2,7 @@ const mainDiv = document.getElementById("main");
 const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
 
+let isRandom = true;
 //Wyświetlenie danych użytkownika
 const showUserData = (userData, userUrl) => {
     //Stworzenie elementów potrzebnych do wyświetlenia użytkownika 
@@ -44,6 +45,8 @@ const showUserData = (userData, userUrl) => {
         btnShowUserStats.innerHTML = "Show user's stats";
         btnShowUserStats.onclick = function() {getUserStats(userUrl)};
         uData.appendChild(btnShowUserStats);
+
+        isRandom = false;
     }
     //Zamienienie danych użytkownika jeżeli istnieją potrzebne elemnty
     let imgProfilePic = document.getElementById("imgPfp");
@@ -55,20 +58,29 @@ const showUserData = (userData, userUrl) => {
     let pUserBio = document.getElementById("pUserBio");
     pUserBio.innerHTML = userData.bio;
 
-    divUserContent.innerHTML = "";
+    clearColumns();
 }
+
+let columnNumber = 1;
 
 //Wyświetlanie zdjęć
 const displayPhotos = (photos, clearDiv = true) => {
-    if (clearDiv) divUserContent.innerHTML = "";
+    if (clearDiv) clearColumns();
 
     photos.forEach(photo => {
         let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
+        let photoColumn = document.getElementById("column" + columnNumber);
         photoImg.class = "userPhoto";
         photoImg.src = photoUrl(photo, 200);
         photoImgDiv.appendChild(photoImg);
-        divUserContent.appendChild(photoImgDiv);
+        photoColumn.appendChild(photoImgDiv);
+        //divUserContent.appendChild(photoImgDiv);
+        photoImgDiv.className = "photoDiv";
+        photoImg.className = "photoItself";
+        columnNumber++;
+        if(columnNumber > 5) columnNumber = 1;
+        
     });
 }
 
@@ -97,7 +109,7 @@ const loadMorePhotos = (link, type, pageNum) => {
 
 //Wyświetlanie kolekcju
 const showUserCollections = (userColletions) => {
-    divUserContent.innerHTML = "";
+    clearColumns();
     userColletions.forEach((collection) => {
         let collectionMain = document.createElement("div");
         collectionMain.onclick = function() {openCollection(collection.links.photos)}
@@ -146,7 +158,7 @@ const showUserCollections = (userColletions) => {
 
 //Wyświetlanie statystyk użytkownika
 const showUserStats = (userStats) => {
-    divUserContent.innerHTML = "";
+    clearColumns();
     
     createStatsTable(userStats.downloads, "Pobrania");
     createStatsTable(userStats.views, "Wyświetlenia");

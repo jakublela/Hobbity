@@ -26,7 +26,7 @@ const getUserData = (userUrl) => {
 
 //Pobranie zdjęć wstawionych przez użytkownika
 const getUserPhotos = (userUrl, pageNum = 1) => {
-    fetch(userUrl + "/photos?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
+    fetch(userUrl + "/photos?" + new URLSearchParams({ per_page: 10, page: pageNum}), {
         method: "GET",
         headers: authorization
     })
@@ -40,7 +40,7 @@ const getUserPhotos = (userUrl, pageNum = 1) => {
 
 //Pobranie zdjęć polubionych przez użytkownika
 const getUserLikes = (userUrl, pageNum = 1) => {
-    fetch(userUrl + "/likes?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
+    fetch(userUrl + "/likes?" + new URLSearchParams({ per_page: 10, page: pageNum}), {
         method: "GET",
         headers: authorization
     })
@@ -80,7 +80,7 @@ const getUserStats = (userUrl) => {
 
 //Pobranie zdjęć z kolekcji
 const openCollection = (collectionPhotosLink, pageNum = 1) => {
-    fetch(collectionPhotosLink + "?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
+    fetch(collectionPhotosLink + "?" + new URLSearchParams({ per_page: 10, page: pageNum}), {
         method: "GET",
         headers: authorization
     })

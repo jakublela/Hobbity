@@ -34,7 +34,7 @@ button{
 .searchbar{
     border: none;
     background-color: #181818;
-    height: 50px;
+    height: 43px;
     outline: none;
     vertical-align: middle;
     color: #aaaaaa;
@@ -78,7 +78,37 @@ img, #baseImage{
 main{
     margin: auto;
     width: 65%;
-    color: antiquewhite;
+    color: yellow;
+    display:flex;
+    flex-direction: column;
+}
+
+#userContent{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.column{
+    display:flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+}
+
+
+
+.photoDiv{
+    display:flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex: 0 1 auto;
+    justify-content: center;
+}
+
+
+.photoItself{
+
 }
 
 .uData{
