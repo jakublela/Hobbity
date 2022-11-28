@@ -67,7 +67,12 @@ img, #baseImage{
 }
 
 .overlay{
-    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 30px;
+    padding: 20px;
 }
 
 main{
@@ -92,14 +97,12 @@ main{
 
 .imgAthrOpt{
     display: flex;
-    align-items: ;
     flex-direction: row;
-}
-.overtest{
-    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
-    width: 400px;
-    height: 400px;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    width: 100%;
 }
 .imgOpt{
     background-color: rgba(0, 0, 0, 0.75);
@@ -110,6 +113,9 @@ main{
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+}
+.author{
+    left: 0;
 }
 
 @font-face {
@@ -123,7 +129,7 @@ main{
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -131,6 +137,7 @@ main{
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
+    margin: 10px;
 }
 
 @font-face {
