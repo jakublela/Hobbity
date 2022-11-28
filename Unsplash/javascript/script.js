@@ -1,18 +1,38 @@
-window.addEventListener("scroll",function(){
-    let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
-    if(document.documentElement.scrollTop == limitBottom){
-    let keyword = document.getElementById("searchRandomTag").value;
-    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
-    setTimeout(1000);
-  }
-})
-generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8 }));
 
-const searchPhoto = document.getElementById("photoRandomTag");
-searchPhoto.addEventListener("keydown", function(key) {
+window.addEventListener("scroll",function(){
+    listenerCopy(generatePhotoTemplate)
+  }
+)
+
+function listenerCopy(fn){
+    clearTimeout(fn.td);
+    fn.td = setTimeout(function(){
+        let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
+        //console.log("limitBottom=" + limitBottom + " offsetHeight=" + document.documentElement.offsetHeight + " innerHeight=" + window.innerHeight + " scrollTop=" + document.documentElement.scrollTop);
+        if(document.documentElement.scrollTop >= limitBottom){
+            console.log("powieś sie2");
+            let keyword = document.getElementById("searchRandomTag").value;
+            fn("photos/random?" + new URLSearchParams({ count: 10, query: keyword}));
+    }}, 1000)
+}
+
+
+const searchRandomPhoto = document.getElementById("searchRandomTag");
+searchRandomPhoto.addEventListener("keydown", function(key) {
     if(key.code != "Enter") return;
+    divUserContent.innerHTML = "";
+    uData.innerHTML = "";
     generateRandomPhotos();
 })
+
+const searchRandomNumber = document.getElementById("searchRandomNumber");
+searchRandomNumber.addEventListener("keydown", function(key) {
+    if(key.code != "Enter") return;
+    divUserContent.innerHTML = "";
+    uData.innerHTML = "";
+    generateRandomPhotos();
+})
+
 
 
 
