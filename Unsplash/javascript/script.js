@@ -1,12 +1,19 @@
 window.addEventListener("scroll",function(){
     let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
     if(document.documentElement.scrollTop == limitBottom){
-    let keyword = document.getElementById("photoKeyWord").value;
+    let keyword = document.getElementById("searchRandomTag").value;
     generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
     setTimeout(1000);
   }
 })
 generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8 }));
+
+const searchPhoto = document.getElementById("photoRandomTag");
+searchPhoto.addEventListener("keydown", function(key) {
+    if(key.code != "Enter") return;
+    generateRandomPhotos();
+})
+
 
 
 /*window.addEventListener("scroll",function(){
