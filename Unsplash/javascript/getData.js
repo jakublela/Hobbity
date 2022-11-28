@@ -15,7 +15,7 @@ searchbar.addEventListener("keydown", function (key) {
         let username = search.slice(2).toLowerCase().replaceAll(" ", "");
         getUserData("https://api.unsplash.com/users/" + username);
     } else {
-        
+
     }
     
 })
@@ -41,28 +41,30 @@ const getUserData = (userUrl) => {
     .catch((error) => alert(error))
 }
 
-const getUserPhotos = (userUrl) => {
-    fetch(userUrl + "/photos", {
+const getUserPhotos = (userUrl, pageNum = 1) => {
+    fetch(userUrl + "/photos?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
         method: "GET",
         headers: authorization
     })
     .then((response) => checkResponse(response))
     .then((userPhotos) => {
         console.log(userPhotos);
-        displayPhotos(userPhotos);
+        displayPhotos(userPhotos, !(pageNum-1));
+        if (userPhotos.length > 7) loadMorePhotos(userUrl, 1, pageNum);
     })
     .catch((error) => console.log(error))
 }
 
-const getUserLikes = (userUrl) => {
-    fetch(userUrl + "/likes", {
+const getUserLikes = (userUrl, pageNum = 1) => {
+    fetch(userUrl + "/likes?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
         method: "GET",
         headers: authorization
     })
     .then((response) => checkResponse(response))
     .then((userLikes) => {
         console.log(userLikes);
-        displayPhotos(userLikes);
+        displayPhotos(userLikes, !(pageNum-1));
+        if (userLikes.length > 7) loadMorePhotos(userUrl, 2, pageNum);
     })
     .catch((error) => console.log(error))
 }
@@ -93,17 +95,18 @@ const getUserStats = (userUrl) => {
     .catch((error) => console.log(error))
 }
 
-const openCollection = (collectionPhotosLink) => {
-    console.log(collectionPhotosLink);
-    fetch(collectionPhotosLink, {
+const openCollection = (collectionPhotosLink, pageNum = 1) => {
+    fetch(collectionPhotosLink + "?" + new URLSearchParams({ per_page: 8, page: pageNum}), {
         method: "GET",
         headers: authorization
     })
     .then((response) => checkResponse(response))
     .then((collectionPhotos) => {
         console.log(collectionPhotos);
-        displayPhotos(collectionPhotos);
+        displayPhotos(collectionPhotos, !(pageNum-1));
+        if (collectionPhotos.length > 7) loadMorePhotos(collectionPhotosLink, 3, pageNum);
     })
+    .catch((error) => console.log(error))
 }
 
 const checkResponse = (response) => {

@@ -68,10 +68,32 @@ const displayPhotos = (photos, clearDiv = true) => {
         let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
         photoImg.class = "userPhoto";
-        photoImg.src = photo.urls.small;
+        photoImg.src = photoUrl(photo, 200);
         photoImgDiv.appendChild(photoImg);
         divUserContent.appendChild(photoImgDiv);
     });
+}
+
+const loadMorePhotos = (link, type, pageNum) => {
+    let btnLoadMore = document.createElement("button");
+    btnLoadMore.innerHTML = "Załaduj więcej zdjęć";
+    btnLoadMore.onclick = function () {
+        switch (type) {
+            case 1:
+                getUserPhotos(link, ++pageNum);
+                break;
+
+            case 2:
+                getUserLikes(link, ++pageNum)
+                break;
+
+            case 3:
+                openCollection(link, ++pageNum)
+                break;
+        }
+        btnLoadMore.remove();
+    }
+    divUserContent.appendChild(btnLoadMore) ;
 }
 
 const showUserCollections = (userColletions) => {
@@ -89,9 +111,9 @@ const showUserCollections = (userColletions) => {
                 if (id > 2) break;
                 let collectionImg = document.createElement("img");
                 if (id == 0) {
-                    collectionImg.src = photo.urls.small;
+                    collectionImg.src = photoUrl(photo, 200);
                 } else {
-                    collectionImg.src = photo.urls.thumb;
+                    collectionImg.src = photoUrl(photo, 100);
                 }
                 collectionImages.appendChild(collectionImg);
             }
@@ -102,10 +124,7 @@ const showUserCollections = (userColletions) => {
             for (let i = 0; i < missingImages; i++) {
                 let collectionImg = document.createElement("img");
                 collectionImg.src = "./img/emptyPhoto.png";
-                if (i == 0 && missingImages === 3) {
-                    collectionImg.style.width = "400px";
-                    collectionImg.style.height = "400px";
-                }
+                if (i == 0 && missingImages === 3) collectionImg.style.width = "200px";
                 collectionImages.appendChild(collectionImg);
             }
         }
