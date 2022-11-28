@@ -165,3 +165,7 @@ main{
     word-wrap: normal;
     direction: ltr;
 }
+
+#likebtn:hover{
+    background-color: #842000;
+}
