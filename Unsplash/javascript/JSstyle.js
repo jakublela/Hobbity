@@ -21,11 +21,16 @@ const overlay = document.createElement("div");
 
 const mouseOver = () => {
     overlay.setAttribute("id", "overlay");
-    overlay.innerHTML = '<input type="button" value="Polub" class="likeBtn"><br><footer class="imgAthrOpt"><span class="author">[Author]</span><button class="imgOpt"><span class="material-symbols-outlined2" style="transform: translateX(-1px);">share</span></button><button class="imgOpt"><span class="material-symbols-outlined2">more_horiz</span></button></footer>';
+    overlay.innerHTML = 
+    '<div class="container">' + 
+      '<img src="img/indeks.png" class="image">' + 
+        '<div class="overlay">' + 
+          '<button id="likebtn"><img src="img/unlike.png" id="imgLike" onclick="like()" style="transform: translateY(3px);"></button>' +
+          '<span class="author">[Author]</span>'+
+        '</div>'
+    '</div>';
     overlay.style.position = "relative";
     overlay.appendChild(document.createTextNode("Hello there!"));
-    //overlay.style.cssText = "width: " + imgWidth + "; height: " + imgHeight + ";";
-
     imgDiv.appendChild(overlay);
     console.log("Działa");
 }
