@@ -3,7 +3,7 @@ const authorization = new Headers();
 authorization.append('Authorization', "Client-ID zrpNTzftIorJiuJScfImsSR-K4dUG1ZPC9GDDzjBvao");
 
 function sortPhotos(){
-    sortedPhotos("photos/order_by?");
+    sortedPhotos("photos/order_by/" + select);
 }
 
 sortedPhotos = (urlEnd) => {
