@@ -2,19 +2,11 @@ const mainDiv = document.getElementById("main");
 const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
 
+let isRandom = true;
+//Wyświetlenie danych użytkownika
 const showUserData = (userData, userUrl) => {
-    if(document.getElementById("uBio")) {
-        let imgProfilePic = document.getElementById("imgPfp");
-        imgProfilePic.src = userData.profile_image.large;
-
-        let h2Username = document.getElementById("user");
-        h2Username.innerHTML = userData.name;
-
-        let pUserBio = document.getElementById("pUserBio");
-        pUserBio.innerHTML = userData.bio;
-
-        divUserContent.innerHTML = "";
-    } else {
+    //Stworzenie elementów potrzebnych do wyświetlenia użytkownika 
+    if(!document.getElementById("uBio")) {
         let divUserBio = document.createElement("div");
         divUserBio.id = "uBio";
         divUserBio.className = "uBio";
@@ -23,18 +15,15 @@ const showUserData = (userData, userUrl) => {
         let imgProfilePic = document.createElement("img");
         imgProfilePic.id = "imgPfp"
         imgProfilePic.className = "imgPfp";
-        imgProfilePic.src = userData.profile_image.large;
         divUserBio.appendChild(imgProfilePic);
 
         let h2Username = document.createElement("h2");
         h2Username.id = "user";
         h2Username.className = "user";
-        h2Username.innerHTML = userData.name;
         divUserBio.appendChild(h2Username);
 
         let pUserBio = document.createElement("p");
         pUserBio.id = "pUserBio";
-        pUserBio.innerHTML = userData.bio;
         divUserBio.appendChild(pUserBio);
 
         let btnShowUserPhotos = document.createElement("button");
@@ -57,23 +46,45 @@ const showUserData = (userData, userUrl) => {
         btnShowUserStats.onclick = function() {getUserStats(userUrl)};
         uData.appendChild(btnShowUserStats);
 
-        divUserContent.innerHTML = "";
-    }   
+        isRandom = false;
+    }
+    //Zamienienie danych użytkownika jeżeli istnieją potrzebne elemnty
+    let imgProfilePic = document.getElementById("imgPfp");
+    imgProfilePic.src = userData.profile_image.large;
+
+    let h2Username = document.getElementById("user");
+    h2Username.innerHTML = userData.name;
+
+    let pUserBio = document.getElementById("pUserBio");
+    pUserBio.innerHTML = userData.bio;
+
+    clearColumns();
 }
 
+let columnNumber = 1;
+
+//Wyświetlanie zdjęć
 const displayPhotos = (photos, clearDiv = true) => {
-    if (clearDiv) divUserContent.innerHTML = "";
+    if (clearDiv) clearColumns();
 
     photos.forEach(photo => {
         let photoImgDiv = document.createElement("div");
         let photoImg = document.createElement("img");
+        let photoColumn = document.getElementById("column" + columnNumber);
         photoImg.class = "userPhoto";
         photoImg.src = photoUrl(photo, 200);
         photoImgDiv.appendChild(photoImg);
-        divUserContent.appendChild(photoImgDiv);
+        photoColumn.appendChild(photoImgDiv);
+        //divUserContent.appendChild(photoImgDiv);
+        photoImgDiv.className = "photoDiv";
+        photoImg.className = "photoItself";
+        columnNumber++;
+        if(columnNumber > 5) columnNumber = 1;
+        
     });
 }
 
+//Przycisk do ładowania kolejnej strony zdjęć
 const loadMorePhotos = (link, type, pageNum) => {
     let btnLoadMore = document.createElement("button");
     btnLoadMore.innerHTML = "Załaduj więcej zdjęć";
@@ -96,8 +107,9 @@ const loadMorePhotos = (link, type, pageNum) => {
     divUserContent.appendChild(btnLoadMore) ;
 }
 
+//Wyświetlanie kolekcju
 const showUserCollections = (userColletions) => {
-    divUserContent.innerHTML = "";
+    clearColumns();
     userColletions.forEach((collection) => {
         let collectionMain = document.createElement("div");
         collectionMain.onclick = function() {openCollection(collection.links.photos)}
@@ -144,13 +156,15 @@ const showUserCollections = (userColletions) => {
     })
 }
 
+//Wyświetlanie statystyk użytkownika
 const showUserStats = (userStats) => {
-    divUserContent.innerHTML = "";
+    clearColumns();
     
     createStatsTable(userStats.downloads, "Pobrania");
     createStatsTable(userStats.views, "Wyświetlenia");
 }
 
+//Stworzenie tabeli na statystyki
 const createStatsTable = (stats, tableName) => {
     let statsTable = document.createElement("table");
 

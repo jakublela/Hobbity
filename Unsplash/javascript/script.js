@@ -1,12 +1,50 @@
+generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 10}));
+
+
 window.addEventListener("scroll",function(){
-    let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
-    if(document.documentElement.scrollTop == limitBottom){
-    let keyword = document.getElementById("photoKeyWord").value;
-    generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8, query: keyword}));
-    setTimeout(1000);
+    if(isRandom) listenerCopy(generatePhotoTemplate);
   }
+)
+
+
+function listenerCopy(fn){
+    clearTimeout(fn.td);
+    fn.td = setTimeout(function(){
+        let limitBottom = document.documentElement.offsetHeight - window.innerHeight;
+        //console.log("limitBottom=" + limitBottom + " offsetHeight=" + document.documentElement.offsetHeight + " innerHeight=" + window.innerHeight + " scrollTop=" + document.documentElement.scrollTop);
+        if(document.documentElement.scrollTop >= limitBottom){
+            let keyword = document.getElementById("searchRandomTag").value;
+            fn("photos/random?" + new URLSearchParams({ count: 10, query: keyword}));
+    }}, 1000)
+}
+
+
+
+const searchRandomPhoto = document.getElementById("searchRandomTag");
+searchRandomPhoto.addEventListener("keydown", function(key) {
+    if(key.code != "Enter") return;
+    clearColumns();
+    uData.innerHTML = "";
+    generateRandomPhotos();
+    isRandom = true;
 })
-generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: 8 }));
+
+const searchRandomNumber = document.getElementById("searchRandomNumber");
+searchRandomNumber.addEventListener("keydown", function(key) {
+    if(key.code != "Enter") return;
+    clearColumns();
+    uData.innerHTML = "";
+    generateRandomPhotos();
+    isRandom = true;
+})
+
+function clearColumns(){
+    for (let i = 1; i <= 5; i++){
+        let photoColumn = document.getElementById("column" + i);
+        photoColumn.innerHTML = "";
+        columnNumber = 1;
+    }
+}
 
 
 /*window.addEventListener("scroll",function(){
@@ -28,8 +66,8 @@ const scrollLoad = (urlPhoto) => {
 
 
 function generateRandomPhotos(){
-    let amount = document.getElementById("photoAmount").value;
-    let keyword = document.getElementById("photoKeyWord").value;
+    let amount = document.getElementById("searchRandomNumber").value;
+    let keyword = document.getElementById("searchRandomTag").value;
     generatePhotoTemplate("photos/random?" + new URLSearchParams({ count: amount, query: keyword}));
 }
 
