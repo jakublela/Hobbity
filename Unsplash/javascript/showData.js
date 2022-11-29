@@ -1,8 +1,9 @@
 const mainDiv = document.getElementById("main");
 const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
-
 let isRandom = true;
+let imgNum = 0;
+
 //Wyświetlenie danych użytkownika
 const showUserData = (userData, userUrl) => {
     //Stworzenie elementów potrzebnych do wyświetlenia użytkownika 
@@ -78,9 +79,9 @@ const displayPhotos = (photos, clearDiv = true) => {
         //divUserContent.appendChild(photoImgDiv);
         photoImgDiv.className = "photoDiv";
         photoImg.className = "photoItself";
+        addOverlay(photo.user.username, photoImgDiv);
         columnNumber++;
         if(columnNumber > 5) columnNumber = 1;
-        
     });
 }
 
@@ -215,4 +216,41 @@ const createStatsTable = (stats, tableName) => {
     
     divUserContent.appendChild(statsTable);
     statsTable.setAttribute("border", "2");
+}
+
+const addOverlay = (author, parentDiv) => {
+    let imgId = imgNum++;
+    let divOverlay = document.createElement("div");
+    divOverlay.className = "overlay";
+    
+    let likeBtn = document.createElement("button");
+    likeBtn.id = "likebtn" + imgId;
+    likeBtn.className = "likebtn";
+    likeBtn.onclick = function() {like(imgId)};
+
+    let likeImg = document.createElement("img")
+    likeImg.src = "img/unlike.png";
+    likeImg.className = "imgLike";
+    likeImg.id = "imgLike" + imgId;
+    likeImg.style.transform = "translateY(3px)";
+    likeBtn.appendChild(likeImg);
+
+    let span = document.createElement("span");
+    span.className = "author";
+    span.innerHTML = author;
+
+    divOverlay.appendChild(likeBtn);
+    divOverlay.appendChild(span);
+    parentDiv.appendChild(divOverlay);
+}
+
+const like = (idImg) => {
+    let likeBtnId = document.getElementById("likebtn" + idImg);
+    let likeImg = document.getElementById("imgLike" + idImg);
+    
+    if(likeImg.getAttribute("src") != "img/like.png"){
+        likeImg.src = "img/like.png";
+    } else {
+        likeImg.src = "img/unlike.png";
+    }
 }

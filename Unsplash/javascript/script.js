@@ -43,6 +43,7 @@ function clearColumns(){
         let photoColumn = document.getElementById("column" + i);
         photoColumn.innerHTML = "";
         columnNumber = 1;
+        imgNum = 0;
     }
 }
 
