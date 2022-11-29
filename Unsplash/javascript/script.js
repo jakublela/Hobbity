@@ -18,24 +18,23 @@ function listenerCopy(fn){
     }}, 1000)
 }
 
-
+function randomGenerate(){
+    deleteUData();
+    clearColumns();
+    generateRandomPhotos();
+    isRandom = true;
+}
 
 const searchRandomPhoto = document.getElementById("searchRandomTag");
 searchRandomPhoto.addEventListener("keydown", function(key) {
     if(key.code != "Enter") return;
-    clearColumns();
-    uData.innerHTML = "";
-    generateRandomPhotos();
-    isRandom = true;
+    randomGenerate();
 })
 
 const searchRandomNumber = document.getElementById("searchRandomNumber");
 searchRandomNumber.addEventListener("keydown", function(key) {
     if(key.code != "Enter") return;
-    clearColumns();
-    uData.innerHTML = "";
-    generateRandomPhotos();
-    isRandom = true;
+    randomGenerate();
 })
 
 function clearColumns(){
@@ -111,6 +110,20 @@ const photoUrl = (photo, width = null, dpr = null, height = null) => {
 
 
 
+function createUData(){
+    if(document.getElementById("uData") === null){
+    let newDiv = document.createElement("div");
+    newDiv.id = "uData";
+    newDiv.className = "uData";
+    document.getElementById("main").insertAdjacentElement("afterbegin", newDiv);
+    }
+}
+
+function deleteUData(){
+    if(document.getElementById("uData") != null){
+    document.getElementById("uData").remove();
+    }
+}
 
 
 /*fetch("https://api.unsplash.com/photos/random", {

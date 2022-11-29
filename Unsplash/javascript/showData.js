@@ -1,5 +1,5 @@
 const mainDiv = document.getElementById("main");
-const uData = document.getElementById("uData");
+//const uData = document.getElementById("uData");
 const divUserContent = document.getElementById("userContent");
 
 let isRandom = true;
@@ -7,6 +7,10 @@ let isRandom = true;
 const showUserData = (userData, userUrl) => {
     //Stworzenie elementów potrzebnych do wyświetlenia użytkownika 
     if(!document.getElementById("uBio")) {
+
+        createUData();
+        let uData = document.getElementById("uData");
+
         let divUserBio = document.createElement("div");
         divUserBio.id = "uBio";
         divUserBio.className = "uBio";
@@ -106,7 +110,7 @@ const loadMorePhotos = (link, type, pageNum) => {
         }
         btnLoadMore.remove();
     }
-    divUserContent.appendChild(btnLoadMore) ;
+    document.getElementById("main").appendChild(btnLoadMore) ;
 }
 
 //Wyświetlanie kolekcji
